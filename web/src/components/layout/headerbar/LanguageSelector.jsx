@@ -38,7 +38,7 @@ const LanguageSelector = ({ currentLang, onLanguageChange, t }) => {
             onClick={() => onLanguageChange('zh-TW')}
             className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'zh-TW' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
           >
-        	繁體中文
+            繁體中文
           </Dropdown.Item>          <Dropdown.Item
             onClick={() => onLanguageChange('en')}
             className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'en' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
@@ -68,6 +68,30 @@ const LanguageSelector = ({ currentLang, onLanguageChange, t }) => {
             className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'vi' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
           >
             Tiếng Việt
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => onLanguageChange('de')}
+            className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'de' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
+          >
+            Deutsch
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => onLanguageChange('hi')}
+            className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'hi' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
+          >
+            हिन्दी
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => onLanguageChange('ko')}
+            className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'ko' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
+          >
+            한국어
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => onLanguageChange('es')}
+            className={`!px-3 !py-1.5 !text-sm !text-semi-color-text-0 dark:!text-gray-200 ${currentLang === 'es' ? '!bg-semi-color-primary-light-default dark:!bg-blue-600 !font-semibold' : 'hover:!bg-semi-color-fill-1 dark:hover:!bg-gray-600'}`}
+          >
+            Español
           </Dropdown.Item>
         </Dropdown.Menu>
       }

@@ -29,10 +29,14 @@ const languageOptions = [
 	{ value: "zh-CN", label: "简体中文" },
 	{ value: "zh-TW", label: "繁體中文" },
 	{ value: "en", label: "English" },
-	{ value: 'fr', label: 'Français'},
-	{ value: 'ru', label: 'Русский'},
-	{ value: 'ja', label: '日本語'},
+	{ value: 'fr', label: 'Français' },
+	{ value: 'ru', label: 'Русский' },
+	{ value: 'ja', label: '日本語' },
 	{ value: "vi", label: "Tiếng Việt" },
+	{ value: "de", label: "Deutsch" },
+	{ value: "hi", label: "हिन्दी" },
+	{ value: "ko", label: "한국어" },
+	{ value: "es", label: "Español" },
 ];
 
 const PreferencesSettings = ({ t }) => {

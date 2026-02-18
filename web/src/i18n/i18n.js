@@ -28,6 +28,10 @@ import zhTWTranslation from './locales/zh-TW.json';
 import ruTranslation from './locales/ru.json';
 import jaTranslation from './locales/ja.json';
 import viTranslation from './locales/vi.json';
+import deTranslation from './locales/de.json';
+import hiTranslation from './locales/hi.json';
+import koTranslation from './locales/ko.json';
+import esTranslation from './locales/es.json';
 
 i18n
   .use(LanguageDetector)
@@ -42,6 +46,10 @@ i18n
       ru: ruTranslation,
       ja: jaTranslation,
       vi: viTranslation,
+      de: deTranslation,
+      hi: hiTranslation,
+      ko: koTranslation,
+      es: esTranslation,
     },
     fallbackLng: 'zh-CN',
     nsSeparator: false,

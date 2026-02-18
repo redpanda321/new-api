@@ -40,9 +40,9 @@ func Init() error {
 		bundle.RegisterUnmarshalFunc("yaml", yaml.Unmarshal)
 
 		// Load embedded translation files
-		files := []string{"locales/zh-CN.yaml", "locales/zh-TW.yaml", "locales/en.yaml"}
-		for _, file := range files {
-			_, err := bundle.LoadMessageFileFS(localeFS, file)
+		for _, langCode := range SupportedLanguages() {
+			filename := "locales/" + langCode + ".yaml"
+			_, err := bundle.LoadMessageFileFS(localeFS, filename)
 			if err != nil {
 				initErr = err
 				return
@@ -50,9 +50,9 @@ func Init() error {
 		}
 
 		// Pre-create localizers for supported languages
-		localizers[LangZhCN] = i18n.NewLocalizer(bundle, LangZhCN)
-		localizers[LangZhTW] = i18n.NewLocalizer(bundle, LangZhTW)
-		localizers[LangEn] = i18n.NewLocalizer(bundle, LangEn)
+		for _, langCode := range SupportedLanguages() {
+			localizers[langCode] = i18n.NewLocalizer(bundle, langCode)
+		}
 
 		// Set the TranslateMessage function in common package
 		common.TranslateMessage = T
@@ -209,6 +209,22 @@ func normalizeLang(lang string) string {
 		return LangZhCN
 	case strings.HasPrefix(lang, "en"):
 		return LangEn
+	case strings.HasPrefix(lang, "fr"):
+		return "fr"
+	case strings.HasPrefix(lang, "de"):
+		return "de"
+	case strings.HasPrefix(lang, "ja"):
+		return "ja"
+	case strings.HasPrefix(lang, "ko"):
+		return "ko"
+	case strings.HasPrefix(lang, "ru"):
+		return "ru"
+	case strings.HasPrefix(lang, "vi"):
+		return "vi"
+	case strings.HasPrefix(lang, "es"):
+		return "es"
+	case strings.HasPrefix(lang, "hi"):
+		return "hi"
 	default:
 		return DefaultLang
 	}
@@ -216,7 +232,7 @@ func normalizeLang(lang string) string {
 
 // SupportedLanguages returns a list of supported language codes
 func SupportedLanguages() []string {
-	return []string{LangZhCN, LangZhTW, LangEn}
+	return []string{"en", "zh-CN", "zh-TW", "fr", "de", "hi", "ja", "ko", "ru", "es", "vi"}
 }
 
 // IsSupported checks if a language code is supported

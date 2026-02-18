@@ -1,6 +1,10 @@
 package system_setting
 
-import "github.com/QuantumNous/new-api/setting/config"
+import (
+	"os"
+
+	"github.com/QuantumNous/new-api/setting/config"
+)
 
 type OIDCSettings struct {
 	Enabled               bool   `json:"enabled"`
@@ -18,6 +22,29 @@ var defaultOIDCSettings = OIDCSettings{}
 func init() {
 	// 注册到全局配置管理器
 	config.GlobalConfig.Register("oidc", &defaultOIDCSettings)
+
+	// Bootstrap from environment variables (e.g. K8s secrets)
+	if v := os.Getenv("OIDC_ENABLED"); v == "true" {
+		defaultOIDCSettings.Enabled = true
+	}
+	if v := os.Getenv("OIDC_CLIENT_ID"); v != "" {
+		defaultOIDCSettings.ClientId = v
+	}
+	if v := os.Getenv("OIDC_CLIENT_SECRET"); v != "" {
+		defaultOIDCSettings.ClientSecret = v
+	}
+	if v := os.Getenv("OIDC_WELL_KNOWN"); v != "" {
+		defaultOIDCSettings.WellKnown = v
+	}
+	if v := os.Getenv("OIDC_AUTHORIZATION_ENDPOINT"); v != "" {
+		defaultOIDCSettings.AuthorizationEndpoint = v
+	}
+	if v := os.Getenv("OIDC_TOKEN_ENDPOINT"); v != "" {
+		defaultOIDCSettings.TokenEndpoint = v
+	}
+	if v := os.Getenv("OIDC_USERINFO_ENDPOINT"); v != "" {
+		defaultOIDCSettings.UserInfoEndpoint = v
+	}
 }
 
 func GetOIDCSettings() *OIDCSettings {

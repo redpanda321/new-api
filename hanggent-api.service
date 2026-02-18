@@ -1,0 +1,18 @@
+# File path: /etc/systemd/system/hanggent-api.service
+# Usage:
+# sudo systemctl start hanggent-api
+# sudo systemctl enable hanggent-api
+# sudo systemctl status hanggent-api
+
+[Unit]
+Description=hanggent-api
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+WorkingDirectory=/path/to/hanggent-api  # 注意修改路径
+ExecStart=/path/to/hanggent-api/hanggent-api --port 3000 --log-dir /path/to/hanggent-api/logs  # 注意修改路径和端口号
+
+[Install]
+WantedBy=multi-user.target

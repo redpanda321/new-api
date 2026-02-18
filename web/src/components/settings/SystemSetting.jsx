@@ -489,7 +489,7 @@ const SystemSetting = () => {
     }
     if (
       originInputs['discord.client_secret'] !==
-        inputs['discord.client_secret'] &&
+      inputs['discord.client_secret'] &&
       inputs['discord.client_secret'] !== ''
     ) {
       options.push({
@@ -749,9 +749,9 @@ const SystemSetting = () => {
                       target='_blank'
                       rel='noreferrer'
                     >
-                      new-api-worker
+                      hanggent-api-worker
                     </a>{' '}
-                    {t('或其兼容new-api-worker格式的其他版本')}
+                    {t('或其兼容hanggent-api-worker格式的其他版本')}
                   </Text>
                   <Row
                     gutter={{ xs: 8, sm: 16, md: 24, lg: 24, xl: 24, xxl: 24 }}

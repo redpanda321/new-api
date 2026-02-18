@@ -51,7 +51,7 @@ i18n
       ko: koTranslation,
       es: esTranslation,
     },
-    fallbackLng: 'zh-CN',
+    fallbackLng: 'en',
     nsSeparator: false,
     interpolation: {
       escapeValue: false,

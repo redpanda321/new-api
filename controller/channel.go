@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"strconv"
 	"strings"
@@ -1172,37 +1173,72 @@ func FetchModels(c *gin.Context) {
 		return
 	}
 
+	var url string
+	switch req.Type {
+	case constant.ChannelTypeAli:
+		url = fmt.Sprintf("%s/compatible-mode/v1/models", baseURL)
+	case constant.ChannelTypeZhipu_v4:
+		if plan, ok := constant.ChannelSpecialBases[baseURL]; ok && plan.OpenAIBaseURL != "" {
+			url = fmt.Sprintf("%s/models", plan.OpenAIBaseURL)
+		} else {
+			url = fmt.Sprintf("%s/api/paas/v4/models", baseURL)
+		}
+	case constant.ChannelTypeVolcEngine:
+		if plan, ok := constant.ChannelSpecialBases[baseURL]; ok && plan.OpenAIBaseURL != "" {
+			url = fmt.Sprintf("%s/v1/models", plan.OpenAIBaseURL)
+		} else {
+			url = fmt.Sprintf("%s/v1/models", baseURL)
+		}
+	case constant.ChannelTypeMoonshot:
+		if plan, ok := constant.ChannelSpecialBases[baseURL]; ok && plan.OpenAIBaseURL != "" {
+			url = fmt.Sprintf("%s/models", plan.OpenAIBaseURL)
+		} else {
+			url = fmt.Sprintf("%s/v1/models", baseURL)
+		}
+	default:
+		url = fmt.Sprintf("%s/v1/models", baseURL)
+	}
+
 	client := &http.Client{}
-	url := fmt.Sprintf("%s/v1/models", baseURL)
 
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"success": false,
 			"message": err.Error(),
 		})
 		return
 	}
 
-	request.Header.Set("Authorization", "Bearer "+key)
+	if req.Type == constant.ChannelTypeAnthropic {
+		request.Header.Set("x-api-key", key)
+		request.Header.Set("anthropic-version", "2023-06-01")
+	} else {
+		request.Header.Set("Authorization", "Bearer "+key)
+	}
 
 	response, err := client.Do(request)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"success": false,
 			"message": err.Error(),
-		})
-		return
-	}
-	//check status code
-	if response.StatusCode != http.StatusOK {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"success": false,
-			"message": "Failed to fetch models",
 		})
 		return
 	}
 	defer response.Body.Close()
+
+	if response.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(response.Body)
+		msg := fmt.Sprintf("获取模型列表失败: status %d", response.StatusCode)
+		if len(body) > 0 {
+			msg += fmt.Sprintf(", body: %s", string(body))
+		}
+		c.JSON(http.StatusOK, gin.H{
+			"success": false,
+			"message": msg,
+		})
+		return
+	}
 
 	var result struct {
 		Data []struct {
@@ -1211,9 +1247,9 @@ func FetchModels(c *gin.Context) {
 	}
 
 	if err := json.NewDecoder(response.Body).Decode(&result); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"success": false,
-			"message": err.Error(),
+			"message": fmt.Sprintf("解析响应失败: %s", err.Error()),
 		})
 		return
 	}

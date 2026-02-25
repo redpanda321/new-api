@@ -29,11 +29,11 @@ export const useNavigation = (t, docsLink, headerNavModules) => {
       docs: true,
       about: true,
       hanggent: true,
-      hanggentApi: true,
+      hanggentVideo: true,
     };
 
     // 使用传入的配置或默认配置
-    const modules = headerNavModules || defaultModules;
+    const modules = { ...defaultModules, ...headerNavModules };
 
     const allLinks = [
       {
@@ -73,10 +73,10 @@ export const useNavigation = (t, docsLink, headerNavModules) => {
         externalLink: 'https://www.hangent.com',
       },
       {
-        text: 'Hanggent API',
-        itemKey: 'hanggentApi',
+        text: 'Hanggent Video',
+        itemKey: 'hanggentVideo',
         isExternal: true,
-        externalLink: 'https://api.hangent.com',
+        externalLink: 'https://video.hangent.com',
       },
     ];
 

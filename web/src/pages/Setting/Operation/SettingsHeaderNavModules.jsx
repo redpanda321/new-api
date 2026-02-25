@@ -49,7 +49,7 @@ export default function SettingsHeaderNavModules(props) {
     docs: true,
     about: true,
     hanggent: true,
-    hanggentApi: true,
+    hanggentVideo: true,
   });
 
   // 处理顶栏模块配置变更
@@ -91,7 +91,7 @@ export default function SettingsHeaderNavModules(props) {
       docs: true,
       about: true,
       hanggent: true,
-      hanggentApi: true,
+      hanggentVideo: true,
     };
     setHeaderNavModules(defaultModules);
     showSuccess(t('已重置为默认配置'));
@@ -159,7 +159,7 @@ export default function SettingsHeaderNavModules(props) {
           docs: true,
           about: true,
           hanggent: true,
-          hanggentApi: true,
+          hanggentVideo: true,
         };
         setHeaderNavModules(defaultModules);
       }
@@ -200,9 +200,9 @@ export default function SettingsHeaderNavModules(props) {
       description: t('Hanggent 官网'),
     },
     {
-      key: 'hanggentApi',
-      title: 'Hanggent API',
-      description: t('Hanggent API 服务'),
+      key: 'hanggentVideo',
+      title: 'Hanggent Video',
+      description: t('Hanggent Video 视频'),
     },
   ];
 

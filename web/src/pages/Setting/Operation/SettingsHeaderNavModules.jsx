@@ -48,6 +48,8 @@ export default function SettingsHeaderNavModules(props) {
     },
     docs: true,
     about: true,
+    hanggent: true,
+    hanggentApi: true,
   });
 
   // 处理顶栏模块配置变更
@@ -88,6 +90,8 @@ export default function SettingsHeaderNavModules(props) {
       },
       docs: true,
       about: true,
+      hanggent: true,
+      hanggentApi: true,
     };
     setHeaderNavModules(defaultModules);
     showSuccess(t('已重置为默认配置'));
@@ -154,6 +158,8 @@ export default function SettingsHeaderNavModules(props) {
           },
           docs: true,
           about: true,
+          hanggent: true,
+          hanggentApi: true,
         };
         setHeaderNavModules(defaultModules);
       }
@@ -187,6 +193,16 @@ export default function SettingsHeaderNavModules(props) {
       key: 'about',
       title: t('关于'),
       description: t('关于系统的详细信息'),
+    },
+    {
+      key: 'hanggent',
+      title: 'Hanggent',
+      description: t('Hanggent 官网'),
+    },
+    {
+      key: 'hanggentApi',
+      title: 'Hanggent API',
+      description: t('Hanggent API 服务'),
     },
   ];
 

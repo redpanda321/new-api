@@ -28,6 +28,8 @@ export const useNavigation = (t, docsLink, headerNavModules) => {
       pricing: true,
       docs: true,
       about: true,
+      hanggent: true,
+      hanggentApi: true,
     };
 
     // 使用传入的配置或默认配置
@@ -63,6 +65,18 @@ export const useNavigation = (t, docsLink, headerNavModules) => {
         text: t('关于'),
         itemKey: 'about',
         to: '/about',
+      },
+      {
+        text: 'Hanggent',
+        itemKey: 'hanggent',
+        isExternal: true,
+        externalLink: 'https://www.hangent.com',
+      },
+      {
+        text: 'Hanggent API',
+        itemKey: 'hanggentApi',
+        isExternal: true,
+        externalLink: 'https://api.hangent.com',
       },
     ];
 

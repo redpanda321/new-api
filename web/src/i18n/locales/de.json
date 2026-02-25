@@ -106,6 +106,8 @@
         "Log": "Protokoll",
         "About": "Über",
         "Save": "Speichern",
-        "Cancel": "Abbrechen"
+        "Cancel": "Abbrechen",
+        "Hanggent 官网": "Hanggent Webseite",
+        "Hanggent API 服务": "Hanggent API Dienst"
     }
 }

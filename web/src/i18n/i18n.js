@@ -51,6 +51,7 @@ i18n
       ko: koTranslation,
       es: esTranslation,
     },
+    lng: 'en',
     fallbackLng: 'en',
     nsSeparator: false,
     interpolation: {

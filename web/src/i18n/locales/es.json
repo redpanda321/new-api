@@ -106,6 +106,8 @@
         "Log": "Registro",
         "About": "Acerca de",
         "Save": "Guardar",
-        "Cancel": "Cancelar"
+        "Cancel": "Cancelar",
+        "Hanggent 官网": "Sitio Web de Hanggent",
+        "Hanggent API 服务": "Servicio Hanggent API"
     }
 }
